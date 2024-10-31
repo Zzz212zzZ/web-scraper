@@ -1,6 +1,5 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
-import * as fs from 'fs';
 import * as path from 'path';
 
 puppeteer.use(StealthPlugin());
@@ -114,10 +113,6 @@ async function scrapeCoinbaseBlog(url: string): Promise<{
       };
     });
 
-    const outputDir = path.join(__dirname, '..', 'output');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
 
     const htmlContent = `
 <!DOCTYPE html>
@@ -153,13 +148,6 @@ async function scrapeCoinbaseBlog(url: string): Promise<{
   </article>
 </body>
 </html>`;
-
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const htmlFilename = `article_${timestamp}.html`;
-    const htmlPath = path.join(outputDir, htmlFilename);
-
-    fs.writeFileSync(htmlPath, htmlContent);
-    console.log('HTML file generated:', htmlPath);
 
     return articleContent;
   } catch (error) {
