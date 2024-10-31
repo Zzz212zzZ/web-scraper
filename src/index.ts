@@ -1,15 +1,19 @@
-// index.ts
-
-import { processArticle } from './services/processArticle';
+import { processBlog } from './services/processBlog';
+import { initializeDatabase } from './services/database';
+import { config } from './config/urls';
 
 async function main() {
-  try {
-    const url = 'https://www.coinbase.com/en-sg/blog/demystifying-the-crypto-x-ai-stack';
-    await processArticle(url);
-    console.log('Article processing completed!');
-  } catch (error) {
-    console.error('Error:', error);
-  }
+    try {
+        await initializeDatabase();
+        
+        for (const url of config.urls) {
+            await processBlog(url);
+        }
+        
+        console.log('Blog processing completed!');
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 main();

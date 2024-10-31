@@ -5,7 +5,10 @@ import * as path from 'path';
 
 puppeteer.use(StealthPlugin());
 
-async function scrapeCoinbaseBlog(url: string): Promise<void> {
+async function scrapeCoinbaseBlog(url: string): Promise<{
+    title: string;
+    contentHTML: string;
+}> {
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: { width: 1920, height: 1080 },
@@ -157,6 +160,8 @@ async function scrapeCoinbaseBlog(url: string): Promise<void> {
 
     fs.writeFileSync(htmlPath, htmlContent);
     console.log('HTML file generated:', htmlPath);
+
+    return articleContent;
   } catch (error) {
     console.error('Error scraping Coinbase blog:', error);
     throw error;
