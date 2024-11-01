@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@redwoodjs/api": "8.4.0",
+    "@redwoodjs/graphql-server": "8.4.0",
+    "axios": "^1.6.0",
+    "node-cron": "^3.0.0",
+    "pg": "^8.13.1",
+    "puppeteer": "^23.6.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "reflect-metadata": "^0.2.2",
+    "rimraf": "^6.0.1",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3",
+    "@types/pg": "^8",
+    "ts-node": "^10.9.2"
+  }
+}
